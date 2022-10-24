@@ -1,0 +1,10 @@
+Creating a Sticky Note App
+
+This is an Interesting App that allows new users to create new accounts by Signing up. While Old users can Log in and out any time.
+
+ The app loads quickly and enables users to take notes.
+ Writing something down on a sticky note gives us the ability to quickly capture a new piece of data or information we've gathered from the universe — whether it's something a user said, an interesting idea we came across, or a simple reminder like “do laundry”.
+
+ I created my app using the Mern Stack and used Css, Html and Javascript. I have a board with a bunch of sticky notes and a user will be able to create new notes, delete and update any note they prefer. 
+
+ Notes will be saved on the users local storage... 
