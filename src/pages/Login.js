@@ -1,4 +1,3 @@
-// import SignUpForm from "../components/LogInForm";
 import '../App.css'; 
 import Note from "../components/Note";
 import logoIcon from "../images/logo.png";

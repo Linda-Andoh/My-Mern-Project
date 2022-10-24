@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { logIn } from '../utilities/users-service';
+import { signUp } from '../utilities/users-service'
 
-export default function LogInForm (props) {
-  
+export default function SignUpForm (props) {
+
+  const [errorState, setErrorState] = useState('');
+
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
-    password: ''
-  })
+    password: '',
+    confirm: ''
+  });
 
-  const [errorState, setErrorState] = useState('')
+  const [disable, setDisable] = useState(formData.password !== formData.confirm)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,9 +21,10 @@ export default function LogInForm (props) {
       const payload = {
         email: formData.email,
         password: formData.password,
+        name: formData.name
       }
 
-      const user = await logIn(payload);
+      const user = await signUp(payload);
       props.setUser(user);
 
     } catch {
@@ -35,6 +40,14 @@ export default function LogInForm (props) {
     <>
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
+          <label htmlFor="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -51,7 +64,15 @@ export default function LogInForm (props) {
             onChange={handleChange}
             required
           />
-          <button type="submit">SIGN UP!</button>
+          <label htmlFor="confirm">Confirm:</label>
+          <input
+            type="password"
+            name="confirm"
+            value={formData.confirm}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" disabled={disable}>SIGN UP!</button>
         </form>
         <p className="error-message">{errorState}</p>
       </div>

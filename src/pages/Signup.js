@@ -1,5 +1,5 @@
 import SignUpForm from "../components/LogInForm";
-// import LogInForm from "../components/SignUpForm";
+import LogInForm from "../components/SignUpForm";
 
 export default function Signup (props) {
     return (
@@ -7,6 +7,8 @@ export default function Signup (props) {
             <h1>Signup Page</h1>
             <h2>Sign Up</h2>
             <SignUpForm setUser={props.setUser} />
+            <h2>Log In</h2>
+            <LogInForm setUser={props.setUser} />
         </main>
     )
 }

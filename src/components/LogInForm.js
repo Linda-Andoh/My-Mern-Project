@@ -1,18 +1,14 @@
 import { useState } from "react";
-import { signUp } from '../utilities/users-service';
+import { logIn } from '../utilities/users-service';
 
-export default function SignUpForm (props) {
-
-  const [errorState, setErrorState] = useState('');
-
+export default function LogInForm (props) {
+  
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    password: '',
-    confirm: ''
-  });
+    password: ''
+  })
 
-  const [disable, setDisable] = useState(formData.password !== formData.confirm)
+  const [errorState, setErrorState] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,14 +17,13 @@ export default function SignUpForm (props) {
       const payload = {
         email: formData.email,
         password: formData.password,
-        name: formData.name
       }
 
-      const user = await signUp(payload);
+      const user = await logIn(payload);
       props.setUser(user);
 
     } catch {
-      setErrorState('Sign Up Failed - Try Again');
+      setErrorState('Log In Failed - Try Again');
     }
   }
 
@@ -40,14 +35,6 @@ export default function SignUpForm (props) {
     <>
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -64,15 +51,7 @@ export default function SignUpForm (props) {
             onChange={handleChange}
             required
           />
-          <label htmlFor="confirm">Confirm:</label>
-          <input
-            type="password"
-            name="confirm"
-            value={formData.confirm}
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" disabled={disable}>SIGN UP!</button>
+          <button type="submit">Log In!</button>
         </form>
         <p className="error-message">{errorState}</p>
       </div>
